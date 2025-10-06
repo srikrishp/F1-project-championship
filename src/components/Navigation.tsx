@@ -1,0 +1,102 @@
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Search, Flag, Users, Car, Trophy } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
+const Navigation = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const location = useLocation();
+
+  const navItems = [
+    { path: "/", label: "Home", icon: Flag },
+    { path: "/drivers", label: "Drivers", icon: Users },
+    { path: "/teams", label: "Teams", icon: Car },
+    { path: "/races", label: "Races", icon: Trophy },
+  ];
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
+
+  return (
+    <nav className="bg-card/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-50">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2">
+            <Flag className="h-8 w-8 text-primary" />
+            <span className="text-xl font-bold text-gradient">F1 Portal</span>
+          </Link>
+
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
+                    isActive(item.path)
+                      ? "bg-primary/20 text-primary racing-glow"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span className="font-medium">{item.label}</span>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search drivers, teams..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 w-64 bg-background/50 border-border/50 focus:border-primary/50"
+            />
+          </div>
+
+          {/* Mobile Menu Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+          >
+            <Flag className="h-5 w-5" />
+          </Button>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden pb-4">
+          <div className="flex flex-wrap gap-2">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm transition-all duration-300 ${
+                    isActive(item.path)
+                      ? "bg-primary/20 text-primary"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span>{item.label}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navigation;
