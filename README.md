@@ -25,7 +25,7 @@ This project was designed to demonstrate our skills in **React, TypeScript, and 
 
 ## 💻 Tech Stack
 
-- **Frontend:** React, TypeScript  
+- **Frontend:** React, TypeScript,html
 - **Styling:** Tailwind CSS  
 - **Build Tool:** Vite  
 - **Data Management:** Custom hooks and utility functions for smooth interactivity  
