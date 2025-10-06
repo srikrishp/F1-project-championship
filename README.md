@@ -1,6 +1,6 @@
 # F1 Project Championship
 
-Welcome to the **F1 Project Championship**, a **mini-project developed by college students** to explore the exciting world of Formula 1 racing! This project was created as a collaborative effort by:
+Welcome to the **F1 Project Championship**, a **mini-project developed by me and my friend of college** to explore the exciting world of Formula 1 racing! This project was created as a collaborative effort by:
 
 1. **Sruthi** – Frontend development, project setup, and overall coordination.  
 2. **Karuna** – UI design, data handling, and component development.  
